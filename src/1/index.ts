@@ -13,45 +13,34 @@ for (const line of lines) {
     const minus = line.at(0) === "L" ? -1 : 1;
     const number = Number.parseInt(line.substring(1)) * minus
     const previouspostion = position
-    position += number
-    const previouszeros = zeros
+    position += number % 100
 
+    let x = Math.floor(Math.abs(number) / 100)
+    let extra = 0
+
+    
     if(position < 0){
-        console.log("x",position)
-        let nzeros = Math.floor(Math.abs(position) / 100) + 1
-        console.log("nzero",nzeros)
-        position = 100 - Math.abs(position % 100)
-        nzeros += nzeros === 0 ? 1 : 0
-        nzeros += previouspostion === 0 ? -1 : 0 
+        if (previouspostion !== 0) extra++;
+        position = 100 - Math.abs(position % 100)    
 
         
-        if(position === 100){
-            nzeros += 1
-            position = 0;
-        }
-        zeros += nzeros
-        console.log("------1",zeros,nzeros, number);
-    
     }
     if(position >= 100){
-        console.log("y",position)
-        let nzeros = Math.floor(Math.abs(position) / 100)
+        if (previouspostion !== 0) extra++;
         position = position % 100
-        nzeros += nzeros === 0 ? 1 : 0
-        nzeros += previouspostion === 0 ? -1 : 0 
-        
-        zeros += nzeros
-        console.log("------1",zeros,nzeros, number);
-   
-        
+       
     }
 
-    if(position === 0 && zeros === previouszeros ){ 
-            console.log("------3",1);
-            zeros++;
-    };
 
-    console.log(position)
+    // console.log("N",zeros)
+   if(position === 0 && extra === 0){
+    x++
+   }
+   x += extra;
+
+    // console.log("",previouspostion)
+    console.log(previouspostion,"+",number,"=",position, " | ",x,",", extra,"|", zeros )
+    zeros += x
     
 }
 console.log("postion",position)
