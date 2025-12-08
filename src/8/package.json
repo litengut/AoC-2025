@@ -1,5 +1,5 @@
 {
-  "name": "aoc-2025",
+  "name": "8",
   "module": "index.ts",
   "type": "module",
   "private": true,
@@ -10,6 +10,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@types/three": "^0.181.0",
     "three": "^0.181.2"
   }
 }
